@@ -1,0 +1,55 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+
+label, p, a{
+    font-family: Poppins, sans-serif;
+}
+
+input, button{
+    outline: none;
+}
+
+input[type="text"]{
+    color: #767676;
+    font-family: Roboto, sans-serif;
+    font-size: 13px;
+    padding-left: 14px;
+}
+input[type="password"]{
+    color: #767676;
+    /* font-family: Roboto, sans-serif; */
+    font-size: 20px;
+    padding-left: 14px;
+}
+
+.img-logo-paggue{
+    width: 150px;
+}
+
+.form{
+    border-radius: 6px;
+    height: 40px;
+}
+
+.label{
+    font-weight: 500;
+    font-size: 10px;
+}
+
+.bg-label{
+    background-color: white;
+    margin-left: 14px;
+    margin-top: -8px;
+    position: absolute;
+}
+
+.bttn{
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #7C009F;
+}
