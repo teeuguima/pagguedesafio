@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background-color: #f9f9f9 !important;">
     <router-view></router-view>
   </div>
 </template>

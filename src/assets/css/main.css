@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 
-label, p, a{
+label, p, a, h3{
     font-family: Poppins, sans-serif;
 }
 
@@ -45,7 +45,7 @@ input[type="password"]{
     position: absolute;
 }
 
-.bttn{
+.btn-purple{
     border: none;
     border-radius: 4px;
     color: white;
