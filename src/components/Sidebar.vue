@@ -29,8 +29,8 @@
                 </a>  
             </div>
         </div> 
-        <a href="#" class="nav_link"> 
-            <i class='bx bx-log-out nav_icon'></i> 
+        <a href="#" class="nav_link">
+            <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="right-from-bracket"></font-awesome-icon> 
             <span class="nav_name">Sair</span> 
         </a>
       </nav>
@@ -135,7 +135,7 @@
       border-bottom-right-radius: 15px; */
       top: 0;
       left: -30%;
-      width: 250px;
+      width: 200px;
       height: 100vh;
       background-color: #7C009F;
       padding: .5rem 1rem 0 0;
