@@ -7,26 +7,35 @@
                 <span class="nav_logo-name">Cliente Paggue</span> 
             </a>
             <div class="nav_list"> 
-                <a href="#" class="nav_link active">
-                    <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="home-lg"></font-awesome-icon> 
-                    <!-- <i class='bx bx-grid-alt nav_icon'></i>  -->
-                    <span class="nav_name">Home</span> 
-                </a> 
-                <a href="#" class="nav_link"> 
-                    <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="box-open"></font-awesome-icon>
-                    <!-- <i class='bx bx-user nav_icon'></i> -->
-                    <span class="nav_name">Produtos</span> 
-                </a> 
-                <a href="#" class="nav_link">
-                    <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="ticket-alt"></font-awesome-icon> 
-                    <!-- <i class='bx bx-message-square-detail nav_icon'></i>  -->
-                    <span class="nav_name">Cupons</span> 
-                </a> 
-                <a href="#" class="nav_link"> 
-                    <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="tags"></font-awesome-icon>
-                    <!-- <i class='bx bx-bookmark nav_icon'></i>  -->
-                    <span class="nav_name">Categorias</span>
-                </a>  
+                <router-link to="/dashboard" :active-class="active" exact>
+                  <a class="nav_link">
+                      <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="home-lg"></font-awesome-icon> 
+                      <!-- <i class='bx bx-grid-alt nav_icon'></i>  -->
+                      <span class="nav_name">Home</span> 
+                  </a>
+                </router-link>
+                <router-link to="/produtos" :active-class="active" exact>
+                  <a class="nav_link"> 
+                      <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="box-open"></font-awesome-icon>
+                      <!-- <i class='bx bx-user nav_icon'></i> -->
+                      <span class="nav_name">Produtos</span> 
+                  </a>
+                </router-link> 
+                <router-link to="/cupons" :active-class="active" exact>
+                  <a class="nav_link">
+                      <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="ticket-alt"></font-awesome-icon> 
+                      <!-- <i class='bx bx-message-square-detail nav_icon'></i>  -->
+                      <span class="nav_name">Cupons</span> 
+                  </a>
+                </router-link> 
+                
+                <router-link to="/categorias" :active-class="active" exact>
+                  <a class="nav_link"> 
+                      <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="tags"></font-awesome-icon>
+                      <!-- <i class='bx bx-bookmark nav_icon'></i>  -->
+                      <span class="nav_name">Categorias</span>
+                  </a>  
+                </router-link>
             </div>
         </div> 
         <a href="#" class="nav_link">
@@ -39,7 +48,11 @@
 
 <script>
     export default {
-        
+        data() {
+          return {
+            active: 'active'
+          }
+        },
     }
 </script>
 

@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { faEye, faEyeSlash, faHomeLg, 
-    faBoxOpen, faTicketAlt, faTags, faRightFromBracket  } from '@fortawesome/free-solid-svg-icons'
+    faBoxOpen, faTicketAlt, faTags, faRightFromBracket, faPlus, faMinus  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faEye, faEyeSlash, faHomeLg, faBoxOpen, 
-    faTicketAlt, faTags, faRightFromBracket)
+    faTicketAlt, faTags, faRightFromBracket, faPlus, faMinus)
 
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

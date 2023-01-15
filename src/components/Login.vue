@@ -135,6 +135,8 @@ export default {
   border: 2px solid #adadad;
   display: block;
   width: 330px;
+  border-radius: 6px;
+  height: 40px;
 }
 
 .label{

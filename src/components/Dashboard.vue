@@ -1,14 +1,14 @@
 <template>
     <div style="background-color: #EFEFEF">
         <sidebar/>
-        <div class="container-fluid">
+        <div class="container-fluid" id="container">
             <div class="row justify-content-end">
-                <img src="../assets/img/logo-paggue.png" class="img-logo-paggue" alt="">
+                <img src="../assets/img/logo-paggue.png" class="img-logo-paggue" id="logo-for-pages" alt="">
             </div>
-            <div class="row row-pt" id="row-activity">
+            <div class="row" id="row-activity">
                 <div class="col-xl-12">
                     <div class="box-activity">
-
+                        
                     </div>
                 </div>
             </div>
@@ -73,16 +73,6 @@ import sidebar from './Sidebar.vue';
     padding-top: 20px;
 }
 
-.img-logo-paggue{
-    margin: 27px 30px 0px 0px;
-    width: 100px;
-}
-
-.container-fluid{
-    padding-left: calc(200px + 2rem);
-    padding-right: 26px;
-}
-
 .box-activity{
     background-color: white;
     border-radius: 15px;
@@ -93,9 +83,10 @@ import sidebar from './Sidebar.vue';
 .box-action{
     background-color: #870093;
     border-radius: 15px;
+    cursor: pointer;
     height: 245px;
-    width: 190px;
     margin-right: 35px;
+    width: 190px; 
 }
 
 .title-action{
