@@ -8,7 +8,10 @@
             <div class="row" id="row-activity">
                 <div class="col-xl-12">
                     <div class="box-activity">
-                        
+                        <div class="pad-box">
+                            <h3 class="title-box">Atividade da sua loja </h3>
+                            <p class="describe-box">Acompanhe as informações sobre o desempenho do seu estabelecimento.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,7 +54,19 @@
                 </div>
                 <div class="col-xl-3 d-flex justify-content-end">
                     <div class="box-blog">
-
+                        <div class="pad-blog">
+                            <h3 class="title-blog">Preparamos vários conteúdos legais, para ajudar você a impulsionar seu negócio</h3>
+                            
+                                <a href="https://blog.paggue.io/" target="blank">
+                                    <div class="d-flex">
+                                        <p class="link-blog">Acesse nosso blog</p>
+                                        <div class="text-center" id="button-blog">
+                                            
+                                        </div>
+                                    </div>
+                                </a>
+                        </div>
+                        <img src="../assets/img/blog.png" id="pd-img-blog" alt="">
                     </div>
                 </div>
             </div>
@@ -69,6 +84,10 @@ import sidebar from './Sidebar.vue';
 </script>
 
 <style scoped>
+a{
+    text-decoration: none;
+}
+
 .row-pt{
     padding-top: 20px;
 }
@@ -96,6 +115,18 @@ import sidebar from './Sidebar.vue';
     margin:20px 0px 30px 22px;
 }
 
+.title-blog{
+    color: #3A3A3A;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.link-blog{
+    color: #7C009F;
+    font-size: 10px;
+}
+
 .box-blog{
     background-color: white;
     border-radius: 15px;
@@ -108,7 +139,7 @@ import sidebar from './Sidebar.vue';
     border-radius: 15px;
     height: 220px;
     margin-top: 20px;
-    width: 865px;
+    width: 990px;
 }
 
 .row-maquininha{
@@ -138,9 +169,16 @@ import sidebar from './Sidebar.vue';
     width: 200px;
 }
 
+.pad-blog{
+    padding: 18px 0px 115px 15px;
+}
 
 .img-smart{
     padding: 15px 0px 0px 140px;
+}
+
+#pd-img-blog{
+    padding-left: 38px;
 }
 
 .pb-6{

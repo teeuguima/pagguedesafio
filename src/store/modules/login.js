@@ -1,24 +1,37 @@
-import authenticator from './auth'
-import {router} from '../../router'
-export default{
+import {authenticator} from './auth'
+// import {VueToast} from 'vue-toast-notification';
+export default {
     namespaced: true,
     state:{
         usuarios:[{
-            login: 'paggueadmin@mail.com',
-            password: 'soupaggue@123'
-        }]
-    },
-    mutations:{
-
+            email: 'pizzariaLaPetit@mail.com',
+            senha: 'soupaggue@123'
+        }],
     },
     actions:{
-        auth(payload){
-            let result = authenticator.auth(usuarios, payload)
-            if(result){
-                router.push('/home')
-            }else{
-                return false
-            }
+        auth({state}, payload){  
+            return authenticator.auth(state.usuarios, payload)
+        },
+        verificarUsuario({commit, dispatch}, payload){
+            return dispatch('auth', payload)
+            .then((promise) => {
+                let result = promise
+                console.log(result)
+                if(!result){
+                    commit('adicionarUsuario', payload)
+                }
+                return result
+            })       
+        }
+    },
+    getters:{
+        getUsuarios(state){
+            return state.usuarios
+        }
+    },
+    mutations:{
+        adicionarUsuario(state, payload){ 
+            state.usuarios.push(payload)
         }
     }
 }

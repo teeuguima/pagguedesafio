@@ -37,11 +37,13 @@
                   </a>  
                 </router-link>
             </div>
-        </div> 
-        <a href="#" class="nav_link">
-            <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="right-from-bracket"></font-awesome-icon> 
-            <span class="nav_name">Sair</span> 
-        </a>
+        </div>
+        <router-link to="/">
+          <a class="nav_link">
+              <font-awesome-icon class='bx bx-grid-alt nav_icon' icon="right-from-bracket"></font-awesome-icon> 
+              <span class="nav_name">Sair</span> 
+          </a>
+        </router-link> 
       </nav>
     </div>
 </template>

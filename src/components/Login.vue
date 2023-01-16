@@ -33,7 +33,7 @@
                 <input
                   :type="input_password"
                   class="form"
-                  v-model="password"
+                  v-model="senha"
                 />
                 <a
                   style="position: absolute; top: 23%; left: 75%"
@@ -46,7 +46,7 @@
                 </a>
               </div>
               <div class="text-left">
-                <button class="btn-purple btn-entrar" @click="$router.push({name: 'dashboard'})">Entrar</button>
+                <button class="btn-purple btn-entrar" @click="login()">Entrar</button>
                 <a class="link-registro"
                   @click="$router.push({name:'cadastro-cliente'})"
                   style="cursor: pointer"
@@ -63,17 +63,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   data() {
     return {
       email: "",
-      password: "",
+      senha: "",
       visibility: "eye",
       input_password: "password",
     };
   },
   computed: {},
   methods: {
+    ...mapActions('login', ['auth']),
     showPassword() {
       if (this.input_password == "password") {
         this.visibility = "eye-slash";
@@ -83,6 +85,17 @@ export default {
         this.input_password = "password";
       }
     },
+    login(){
+      this.auth({email: this.email, senha: this.senha})
+      .then((result) =>{
+        // console.log(result)
+        if(result == true){
+          this.$router.push({name: 'dashboard'})
+        }else{
+          this.$toast.error('Não foi possível realizar o login, reveja suas credenciais.')
+        }
+      })
+    }
   },
 };
 </script>
