@@ -224,9 +224,6 @@ table {
   width: 100%;
 }
 
-.list {
-}
-
 .counter {
   background-color: #efefef;
   border-radius: 4px;
