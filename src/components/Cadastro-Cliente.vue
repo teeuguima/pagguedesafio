@@ -133,8 +133,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations("cliente", [ "adicionarCliente"]),
-    ...mapActions('login', ['verificarUsuario']),
+    ...mapMutations("cliente", ["adicionarCliente"]),
+    ...mapActions("login", ["verificarUsuario"]),
     criarConta() {
       if (this.docIdentificacao == 14) {
         this.adicionarCliente({
@@ -156,16 +156,17 @@ export default {
           telefone: this.telefone,
         });
       }
-      this.verificarUsuario({email: this.email, senha: this.senha})
-      .then((result)=>{
-        console.log(result)
-        if(result){
-          this.$toast.error('Já existe um registro com este email')
-        }else{
-          this.$toast.success('Cadastro realizado, efetue login')
-          this.$router.push('/')
+      this.verificarUsuario({ email: this.email, senha: this.senha }).then(
+        (result) => {
+          console.log(result);
+          if (result) {
+            this.$toast.error("Já existe um registro com este email");
+          } else {
+            this.$toast.success("Cadastro realizado, efetue login");
+            this.$router.push("/");
+          }
         }
-      })
+      );
     },
     trocarPessoa() {
       console.log(this.docIdentificacao);
@@ -251,7 +252,7 @@ export default {
   margin-top: 20px;
 }
 
-.sou-cliente{
+.sou-cliente {
   color: #777777;
   font-size: 10px;
   margin: 15px 0px 6px 0px;
@@ -263,11 +264,11 @@ export default {
   width: 225px;
 }
 
-.btn-entrar{
+.btn-entrar {
   background-color: transparent;
-  border: 1px solid #7C009F;
+  border: 1px solid #7c009f;
   border-radius: 4px;
-  color: #7C009F;
+  color: #7c009f;
   font-size: 14px;
   font-weight: 500;
   height: 40px;

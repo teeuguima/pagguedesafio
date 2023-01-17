@@ -30,11 +30,7 @@
                 <div class="text-center bg-label" id="label-password">
                   <label for="" class="label">Senha</label>
                 </div>
-                <input
-                  :type="input_password"
-                  class="form"
-                  v-model="senha"
-                />
+                <input :type="input_password" class="form" v-model="senha" />
                 <a
                   style="position: absolute; top: 23%; left: 75%"
                   @click="showPassword"
@@ -46,9 +42,12 @@
                 </a>
               </div>
               <div class="text-left">
-                <button class="btn-purple btn-entrar" @click="login()">Entrar</button>
-                <a class="link-registro"
-                  @click="$router.push({name:'cadastro-cliente'})"
+                <button class="btn-purple btn-entrar" @click="login()">
+                  Entrar
+                </button>
+                <a
+                  class="link-registro"
+                  @click="$router.push({ name: 'cadastro-cliente' })"
                   style="cursor: pointer"
                   >Ainda não é cliente paggue?
                   <span style="color: #7c009f">Cadastre-se</span></a
@@ -63,7 +62,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -75,7 +74,7 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions('login', ['auth']),
+    ...mapActions("login", ["auth"]),
     showPassword() {
       if (this.input_password == "password") {
         this.visibility = "eye-slash";
@@ -85,17 +84,19 @@ export default {
         this.input_password = "password";
       }
     },
-    login(){
-      this.auth({email: this.email, senha: this.senha})
-      .then((result) =>{
+    login() {
+      this.auth({ email: this.email, senha: this.senha }).then((result) => {
         // console.log(result)
-        if(result == true){
-          this.$router.push({name: 'dashboard'})
-        }else{
-          this.$toast.error('Não foi possível realizar o login, reveja suas credenciais.')
+        if (result == true) {
+          sessionStorage.setItem("email", this.email);
+          this.$router.push({ name: "dashboard" });
+        } else {
+          this.$toast.error(
+            "Não foi possível realizar o login, reveja suas credenciais."
+          );
         }
-      })
-    }
+      });
+    },
   },
 };
 </script>
@@ -143,7 +144,7 @@ export default {
   width: 540px;
 }
 
-.form{
+.form {
   background-color: transparent;
   border: 2px solid #adadad;
   display: block;
@@ -152,7 +153,7 @@ export default {
   height: 40px;
 }
 
-.label{
+.label {
   /* background-color: white; */
   color: #767676;
   display: block;

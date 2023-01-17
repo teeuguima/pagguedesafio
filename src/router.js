@@ -6,8 +6,7 @@ import Dashboard from './components/Dashboard.vue'
 import Produtos from './components/Produtos.vue'
 import Cupons from './components/Cupons.vue'
 import Categorias from './components/Categorias.vue'
-import Loja from './components/Loja.vue'
-import Home from './components/Home.vue'
+import Perfil from './components/Perfil.vue'
 
 Vue.use(Router)
 const router = new Router({
@@ -37,13 +36,9 @@ const router = new Router({
         name: 'dashboard',
         component: Dashboard
     },{
-        path: '/loja',
-        name: 'loja',
-        component: Loja
-    },{
-        path: '/home',
-        name: 'home',
-        component: Home
+        path: '/perfil',
+        name: 'perfil',
+        component: Perfil
     }]
 })
 
