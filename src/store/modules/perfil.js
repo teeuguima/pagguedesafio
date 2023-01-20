@@ -7,9 +7,21 @@ export default{
         forma_pagamento:null,
     },
     getters:{
+        getConta(state){
+            return state.conta
+        },
+        getPix(state){
+            return state.pix
+        },
+        getEndereco(state){
+            return state.endereco
+        },
+        getFormaPagamento(state){
+            return state.forma_pagamento
+        }
     },
     mutations:{
-        adicionarConta(state,payload){
+        adicionarPerfil(state,payload){
             state.conta = payload.conta
             state.pix = payload.pix
             state.endereco = payload.endereco

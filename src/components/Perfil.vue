@@ -160,6 +160,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -183,7 +184,15 @@ export default {
     };
   },
   methods: {
-    adicionar() {},
+    ...mapMutations("perfil", ['adicionarPerfil']),
+    adicionar() {
+      this.adicionarPerfil({
+        conta: this.conta,
+        pix: this.pix,
+        endereco: this.endereco,
+        pagamento: this.pagamento,
+      })
+    },
   },
 };
 </script>
