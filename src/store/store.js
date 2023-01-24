@@ -6,6 +6,7 @@ import cliente from './modules/cliente'
 import produtos from './modules/produtos'
 import categorias from './modules/categorias.js'
 import cupons from './modules/cupons.js'
+import perfil from './modules/perfil'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -15,6 +16,7 @@ export default new Vuex.Store({
         cliente,
         produtos,
         categorias,
-        cupons
+        cupons,
+        perfil
     },
 })

@@ -5,11 +5,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEye, faEyeSlash, faHomeLg, 
     faBoxOpen, faTicketAlt, faTags, 
     faRightFromBracket, faPlus, faMinus,
-    faTrash,  } from '@fortawesome/free-solid-svg-icons'
+    faTrash, faPencilAlt  } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faEye, faEyeSlash, faHomeLg, faBoxOpen, 
     faTicketAlt, faTags, faRightFromBracket, 
-    faPlus, faMinus, faTrash)
+    faPlus, faMinus, faTrash, faPencilAlt)
 
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

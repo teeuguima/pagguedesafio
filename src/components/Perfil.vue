@@ -14,11 +14,18 @@
         <div class="row justify-content-center">
           <div class="box-profile d-flex">
             <div class="pad-box">
-              <h3 class="title-box">Meu perfil</h3>
-              <p class="describe-box">
-                Gerencie as informações destinadas ao <br />
-                seu estabelecimento
-              </p>
+              <div class="d-flex">
+                <div>
+                  <h3 class="title-box">Meu perfil</h3>
+                  <p class="describe-box">
+                    Gerencie as informações destinadas ao <br />
+                    seu estabelecimento
+                  </p>
+                </div>
+                <div id="edicao" v-if="isEdicao">
+                  <button class="btn-editar" @click="edicao = true"> <font-awesome-icon icon="pencil-alt"></font-awesome-icon> Editar</button>
+                </div>
+              </div>
               <div>
                 <div>
                   <h3 class="title-section">Conta bancária</h3>
@@ -29,7 +36,7 @@
                         type="text"
                         class="form"
                         id="agencia"
-                        v-model="conta.agencia"
+                        v-model="agencia"
                       />
                     </div>
                     <div>
@@ -38,7 +45,7 @@
                         type="text"
                         class="form"
                         id="conta"
-                        v-model="conta.numero"
+                        v-model="num_conta"
                       />
                     </div>
                     <div>
@@ -47,7 +54,7 @@
                         type="text"
                         class="form"
                         id="digito"
-                        v-model="conta.digito"
+                        v-model="digito"
                       />
                     </div>
                   </div>
@@ -69,6 +76,7 @@
                         class="form"
                         id="cep"
                         v-model="endereco.cep"
+                        @blur="buscarEndereco"
                       />
                     </div>
                     <div>
@@ -77,7 +85,7 @@
                         type="text"
                         class="form"
                         id="estado"
-                        v-model="endereco.estado"
+                        v-model="estado"
                       />
                     </div>
                     <div>
@@ -86,7 +94,7 @@
                         type="text"
                         class="form"
                         id="cidade"
-                        v-model="endereco.cidade"
+                        v-model="cidade"
                       />
                     </div>
                   </div>
@@ -97,7 +105,7 @@
                         type="text"
                         class="form"
                         id="bairro"
-                        v-model="endereco.bairro"
+                        v-model="bairro"
                       />
                     </div>
                     <div>
@@ -108,7 +116,7 @@
                         type="text"
                         class="form"
                         id="logradouro"
-                        v-model="endereco.logradouro"
+                        v-model="logradouro"
                       />
                     </div>
                   </div>
@@ -121,7 +129,7 @@
                         type="text"
                         class="form"
                         id="complemento"
-                        v-model="endereco.complemento"
+                        v-model="complemento"
                       />
                     </div>
                     <div>
@@ -130,7 +138,7 @@
                         type="text"
                         class="form"
                         id="numero"
-                        v-model="endereco.numero"
+                        v-model="numero"
                       />
                     </div>
                   </div>
@@ -139,12 +147,13 @@
                   <h3 class="title-section">Formas de pagamento</h3>
                   <div>
                     <label for="" class="label mb-1 d-block">Pagamento</label>
-                    <input
+                    <!-- <input
                       type="text"
                       class="form"
                       id="validade"
                       v-model="pagamento"
-                    />
+                    /> -->
+                    <v-select multiple v-model="pagamento" :options="forma_pagamento" id="validade" />
                   </div>
                 </div>
               </div>
@@ -160,16 +169,17 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
+import cep from 'cep-promise'
 export default {
   data() {
     return {
       conta: {
         agencia: "",
-        numero: "",
+        num_conta: "",
         digito: "",
       },
-      pix: "",
+      chave_pix: "",
       endereco: {
         cep: "",
         estado: "",
@@ -180,19 +190,175 @@ export default {
         numero: "",
       },
       pagamento: "",
-      forma_pagamento: [],
+      forma_pagamento: ['Cartão','Pix', 'À vista'],
+      edicao: false,
     };
   },
+  created () {
+    if(this.getRegistro()){
+      this.edicao = true
+    }
+
+  },
+  computed: {
+    isEdicao(){
+      return this.edicao
+    },
+    agencia:{
+      get(){
+        if(this.getConta() != null){
+          return this.getConta().agencia
+        }else{
+          return this.conta.agencia
+        }
+      },
+      set(valor){
+        this.conta.agencia = valor
+      }
+    },
+    num_conta:{
+      get(){
+        if(this.getConta() != null){
+          return this.getConta().num_conta
+        }else{
+          return this.conta.num_conta
+        }
+      },
+      set(valor){
+        this.conta.num_conta = valor
+      }
+    },
+    digito:{
+      get(){
+        if(this.getConta() != null){
+          return this.getConta().digito
+        }else{
+          return this.conta.digito
+        }
+      },
+      set(valor){
+        this.conta.digito = valor
+      }
+    },
+    pix:{
+      get(){
+        if(this.getPix() != null){
+          return this.getPix()
+        }else{
+          return this.chave_pix
+        }
+      },
+      set(valor){
+        this.chave_pix = valor
+      }
+    },
+    cep:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().cep
+        }else{
+          return this.endereco.cep
+        }
+      },
+      set(valor){
+        this.endereco.cep = valor
+      }
+    },
+    estado:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().estado
+        }else{
+          return this.endereco.estado
+        }
+      },
+      set(valor){
+        this.endereco.estado = valor
+      }
+    },
+    cidade:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().cidade
+        }else{
+          return this.endereco.cidade
+        }
+      },
+      set(valor){
+        this.endereco.cidade = valor
+      }
+    },
+    bairro:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().bairro
+        }else{
+          return this.endereco.bairro
+        }
+      },
+      set(valor){
+        this.endereco.bairro = valor
+      }
+    },
+    logradouro:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().logradouro
+        }else{
+          return this.endereco.logradouro
+        }
+      },
+      set(valor){
+        this.endereco.logradouro = valor
+      }
+    },
+    complemento:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().complemento
+        }else{
+          return this.endereco.complemento
+        }
+      },
+      set(valor){
+        this.endereco.complemento = valor
+      }
+    },
+    numero:{
+      get(){
+        if(this.getEndereco() != null){
+          return this.getEndereco().numero
+        }else{
+          return this.endereco.numero
+        }
+      },
+      set(valor){
+        this.endereco.numero = valor
+      }
+    },
+    
+
+  },
   methods: {
-    ...mapMutations("perfil", ['adicionarPerfil']),
+    ...mapGetters("perfil", ["getConta", "getPix", "getEndereco", "getPagamento", "getRegistro"]),
+    ...mapMutations("perfil", ['alterarPerfil']),
     adicionar() {
-      this.adicionarPerfil({
+      this.alterarPerfil({
         conta: this.conta,
         pix: this.pix,
         endereco: this.endereco,
         pagamento: this.pagamento,
       })
     },
+    buscarEndereco(){
+      cep(this.endereco.cep)
+      .then((resp) =>{
+        this.endereco.estado = resp.state
+        this.endereco.cidade = resp.city
+        this.endereco.bairro = resp.neighborhood
+        this.endereco.logradouro = resp.street
+      })
+    }
   },
 };
 </script>
@@ -240,6 +406,10 @@ export default {
   margin-bottom: 0px;
 }
 
+.describe-box{
+  margin-bottom: 28px;
+}
+
 .container-fluid {
   padding-bottom: 26%;
 }
@@ -273,5 +443,17 @@ export default {
 
 .title-section:nth-child(n + 1) {
   margin-top: 25px;
+}
+
+.btn-editar{
+  background-color: transparent;
+  border: 1px solid #7C009F;
+  border-radius: 4px;
+  color: #7C009F;
+  font-size: 13px;
+  font-weight: 500;
+  width: 120px;
+  height: 30px;
+  margin: 15px 0px 0px 94px;
 }
 </style>

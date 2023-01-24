@@ -4,8 +4,8 @@ export default {
     namespaced: true,
     state:{
         usuarios:[{
-            email: 'pizzariaLaPetit@mail.com',
-            senha: 'soupaggue@123'
+            email: 'teste@mail.com',
+            senha: '123456'
         }],
     },
     actions:{

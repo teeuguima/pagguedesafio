@@ -221,7 +221,7 @@ a {
 
 .title-maquininha {
   color: #767676;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 
